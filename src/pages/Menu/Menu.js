@@ -125,10 +125,13 @@ const Menu = () => {
     dispatch(setFlag(true));
     navigate("/products/results");
     setLoad(true);
+    const fromValue = +to > +from ? +to : +from;
+    const toValue = +to > +from ? +from : +to;
+
     try {
       const res = await axios.post(
         `${base_products}/search?limit=${limit}&page=${page}`,
-        { to, from, kind, text }
+        { to: toValue, from: fromValue, kind, text }
       );
       dispatch(setProduct(res.data.results));
       setTotal(res.data.total);

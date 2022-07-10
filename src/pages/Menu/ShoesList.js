@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../assets/css/index.css";
@@ -20,6 +20,10 @@ const ShoesList = ({ type, list, pagination, handle, loading, types, max }) => {
     handleSetTo(newValue[0]);
     handleSetFrom(newValue[1]);
   };
+
+  useEffect(() => {
+    setValue([0, +max]);
+  }, [max]);
   return (
     <div className='bg-[#222222] min-h-[100vh] relative py-5 overflow-hidden'>
       <div className='max-w-[1200px] mx-auto my-0 flex flex-col md:flex-row justify-between'>
